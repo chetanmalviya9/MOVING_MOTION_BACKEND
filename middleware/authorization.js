@@ -3,7 +3,6 @@ export const auth=async (req,res,next)=>{
     try {
         if(req.headers.authorization)
         {
-
             let token = req.headers.authorization;
             console.log(token)
             let result = jwt.verify(token,'chetan123456789');

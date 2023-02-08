@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { vehicleBooking } from '../model/bookingDetail.model.js';
 import { CompletOrders } from '../model/completeOrder.model.js';
 
@@ -17,7 +16,7 @@ export const bookVehicle = async (req, res, next) => {
         res.status(201).json({ result, status: true })
     }
     catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(400).json({ message: "something went wrong", status: false });
     }
 }
@@ -41,7 +40,7 @@ export const addBid = async (req, res, next) => {
             return res.status(200).json({ message: 'Successfully Bid to order', status: true });
         }
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         return res.status(500).json({ message: 'Oops! something went wrong', status: false });
     }
 }
@@ -51,7 +50,7 @@ export const orderStatus = async (req, res, next) => {
         res.status(201).json({ bookings: result, status: true })
     }
     catch (err) {
-        console.log(err)
+        // console.log(err)
         res.status(500).json({ message: "Something went wrong", status: false })
     }
 }
@@ -64,16 +63,16 @@ export const completedOrders = async(req, res, next) => {
         res.status(200).json({status:true,message:"Order Detail send to the Driver"});
     } 
     catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({status:false,message:"Internal Server Error"});
     }
 }
 export const getCompletedOrders = async(req,res,next)=>{
-    console.log(req.params.id);
+    // console.log(req.params.id);
     try {
         // if()
         let result = await CompletOrders.find({userId:req.params.id});
-
+        // console.log(result)
         result = result.map((data)=>{
             // data=JSON.parse(JSON.stringify(data));
             data=data.toJSON();

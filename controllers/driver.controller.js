@@ -4,7 +4,6 @@ import { Driver } from "../model/driver.model.js"
 
 export const signUp = async (req, res, next) => {
     try {
-        // console.log(req.body)
         let password = req.body.password;
         let saltKey = await bcrypt.genSalt(10);
         let encryptedPassword = await bcrypt.hash(password, saltKey);

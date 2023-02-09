@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const completOrdersSchema = new mongoose.Schema({
+const cancelOrderSchema = new mongoose.Schema({
     pickUpLocation: {
         type: String,
         required: true
@@ -20,15 +20,9 @@ const completOrdersSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    biding: [],
-    driverDetail:{ },
-    driverId:{
-        type: mongoose.Schema.ObjectId,
-        ref: "user"
-    },
     userId: {
         type: mongoose.Schema.ObjectId,
         ref: "user"
     }
-});
-export const CompletOrders = mongoose.model("completeOrder", completOrdersSchema);
+})
+export const CancelOrder = new mongoose.model("cancelorder", cancelOrderSchema)

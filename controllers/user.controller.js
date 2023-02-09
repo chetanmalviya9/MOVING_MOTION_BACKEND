@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { User } from "../model/user.model.js";
 import jwt from 'jsonwebtoken';
-
+import stripe from 'stripe';
 export const signUp = async (req, res, next) => {
     try {
         console.log(req.body)
@@ -28,7 +28,7 @@ export const signIn = async (req, res, next) => {
             let validPassword = await bcrypt.compare(req.body.password, user.password);
             // let payload = {subject: user._id};
             // let token =  jwt.sign(payload,'chetan123456789');
-    
+
             if (validPassword)
                 return res.status(200).json({ userDetail: user, status: true });
             else
@@ -58,3 +58,25 @@ export const updateUser = async (req, res, next) => {
         return res.status(500).json({ message: "something went wrong", status: false })
     }
 }
+
+
+//--------------payment ----work in progress
+export const payment=async (req, res) => {
+    const { tokan, product } = req.body;
+    console.log("hello");
+    try {
+  
+      const charge = await stripeClient.charges.create({
+        amount: product.price,
+        currency: 'usd',
+        description: product.name,
+        source:tokan,
+      },(err,charge)=>{ 
+          console.log(charge);
+          res.status(200).json({ success: charge });
+      });
+    }  
+    catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }

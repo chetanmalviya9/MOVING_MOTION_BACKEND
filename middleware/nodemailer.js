@@ -7,14 +7,14 @@ export const nodemailerEmail = (email, subject, text) => {
             rejectUnauthorized: false
         },
         auth: {
-            user: Enter your email,
-            pass: Enter your generated password
+            user: 'chetanmalviya924@gmail.com',
+            pass: 'xnjihlicgwwgfyez'
         },
         connectionTimeout: 5 * 60 * 1000, // 5 min
     });
     var mailOptions = {
-        from: Enter email,
-        to: enter email,
+        from: 'chetanmalviya924@gmail.com',
+        to: '24chetanmalviya@gmail.com',
         subject: subject,
         text: text
     };

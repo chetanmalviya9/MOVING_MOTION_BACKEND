@@ -9,7 +9,8 @@ import fs from "fs";
 import path from 'path';
 import morgan from 'morgan';
 const app = express();
-
+import dotenv from 'dotenv'
+dotenv.config();
 const originalSend = app.response.send
 
 app.response.send = function sendOverWrite(body) {
@@ -18,9 +19,9 @@ app.response.send = function sendOverWrite(body) {
 }
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.static('images'));
-
+const PORT = process.env.PORT
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb+srv://chetanmalviya9:Chetan%40123@cluster0.uwyx1lm.mongodb.net/MovingMotion?retryWrites=true&w=majority", err => {
+mongoose.connect(process.env.MONGO_URL, err => {
     if (err)
         console.log(err);
     else {
@@ -66,8 +67,8 @@ mongoose.connect("mongodb+srv://chetanmalviya9:Chetan%40123@cluster0.uwyx1lm.mon
         // )
 
         // setup the logger 
-        app.listen(4000, () => {
-            console.log("Server started at port 4000 http://localhost:4000/");
+        app.listen(PORT, () => {
+            console.log(`Server started at port ${PORT} http://localhost:${PORT}/`);
         })
     }
 });
